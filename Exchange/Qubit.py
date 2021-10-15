@@ -2,17 +2,17 @@ import random
 
 
 class Qubit:
-    def __init__(self, value, polarization):
-        self.value = value
-        self.polarization = polarization
+    def __init__(self, val, pol):
+        self.value = val
+        self.polarization = pol
 
-    def set(self, value, polarization):
-        self.value = value
-        self.polarization = polarization
+    def set(self, val, pol):
+        self.value = val
+        self.polarization = pol
         return None
 
-    def measure(self, polarization):
-        if self.polarization == polarization:
-            return self.polarization
+    def measure(self, pol):
+        if self.polarization == pol:
+            return self.value
         else:
-            return 1 if random.random() < .5 else 0
+            return 1 if random.random() < 0.5 else 0
