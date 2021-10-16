@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-from Exchange import XOR
+from QKE import XOR
 from unittest import TestCase
 
 
 class TestXOR(TestCase):
     def test_long_key(self):
+        testss = input("Who are you ")
         message = [0, 1, 0, 0, 1, 0]
         long_key = [1, 0, 0, 1, 1, 1]
 

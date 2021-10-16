@@ -5,7 +5,8 @@ from Qubit import Qubit
 from numpy import random
 
 # random.seed(seed=0)  # Uncomment if you want to test with the same values every time
-n = 16
+qubit_length = 3
+communication_channel = []  # set up channel for the qubits to travel
 
 
 def main():
@@ -14,19 +15,23 @@ def main():
     Bob: Receiver
     """
 
-    alice_vals = random.randint(2, size=n)
-    print("Alice's random values: {}".format(alice_vals))
+    alice_vals = random.randint(2, size=qubit_length)
+    #print("Alice's random values: {}".format(alice_vals))
 
-    alice_pols = random.randint(2, size=n)
-    print("Alice's random polarizations: {}".format(alice_pols))
+    alice_pols = random.randint(2, size=qubit_length)
+    #print("Alice's random polarizations: {}".format(alice_pols))
 
-    qubits = encode_qubits(alice_vals, alice_pols)
+    encode_qubits(alice_vals, alice_pols)
 
-    bob_pols = random.randint(2, size=n)
-    print("Bob's random polarizations: {}".format(bob_pols))
+    eve_pol = random.randint(2, size=qubit_length)
+    interception = measure_qubits(eve_pol)
+    print("interception: {}".format(interception))
 
-    bob_measurements = measure_qubits(qubits, bob_pols)
-    print("Bob's measured values: {}".format(bob_measurements))
+    bob_pols = random.randint(2, size=qubit_length)
+    #print("Bob's random polarizations: {}".format(bob_pols))
+
+    bob_measurements = measure_qubits(bob_pols)
+    print("measured : {}".format(bob_measurements))
 
     alice_key = generate_key(alice_pols, bob_pols, alice_vals)
     bob_key = generate_key(alice_pols, bob_pols, bob_measurements)
@@ -39,34 +44,34 @@ def main():
     print("Message: {}".format(alice_message))
 
     alice_cipher = cipher_message(alice_message, alice_key)
-    print("Cipher to be sent: {}".format(alice_cipher))
+    #print("Cipher to be sent: {}".format(alice_cipher))
 
     bob_message = cipher_message(alice_cipher, bob_key)
     print("Deciphered message: {}".format(bob_message))
+    # print("Deciphered message: {}".format(bob_message))
 
 
 def encode_qubits(vals, pols):
     """
     Prepares a stream of qubits to send to a receiver
     """
-    qubits = []
 
-    for i in range(n):
+    for i in range(qubit_length):
         qubit = Qubit(vals[i], pols[i])
-        qubits.append(qubit)
+        communication_channel.append(qubit)
 
-    return qubits
+    # return qubits
 
 
-def measure_qubits(message, pols):
+def measure_qubits(pols):
     """
     Receiver recieves a stream of qubits, and selects a
     random polarization to measure it
     """
     measurements = []
 
-    for i in range(n):
-        measurement = message[i].measure(pols[i])
+    for i in range(qubit_length):
+        measurement = communication_channel[i].measure(pols[i])
         measurements.append(measurement)
 
     return measurements
@@ -79,7 +84,7 @@ def generate_key(a_pols, b_pols, vals):
     """
     key = []
 
-    for i in range(n):
+    for i in range(qubit_length):
         if a_pols[i] == b_pols[i]:
             key.append(vals[i])
 
@@ -87,7 +92,11 @@ def generate_key(a_pols, b_pols, vals):
 
 
 def cipher_message(message, key):
-    return XOR.cipher(message, key)
+    try:
+        return XOR.cipher(message, key)
+    except TypeError:
+        # This error occurs more often when n is really small
+        print("Could not decipher anything, no valid key")
 
 
 if __name__ == "__main__":
