@@ -12,15 +12,22 @@ if it is possible to decpiher the exchanged secret message.
 """
 # ---------------------------------------------------------------------------
 
+from random import randint
+
 from unittest import TestCase
 from QKE.Emulation import QKEEmulator
 
-emulate_standard = QKEEmulator(qubit_length=16)
-emulate_intercept = QKEEmulator(qubit_length=512,
-                                message_length=325,
+qubit_lengths = [16, 256, 1048]
+
+emulate_standard = QKEEmulator(qubit_length=qubit_lengths[randint(0, 2)],
+                               message_length=randint(16, 4096))
+
+emulate_intercept = QKEEmulator(qubit_length=qubit_lengths[randint(0, 2)],
+                                message_length=randint(16, 4096),
                                 run_type="intercept")
-emulate_mitm = QKEEmulator(qubit_length=256,
-                           message_length=3665,
+
+emulate_mitm = QKEEmulator(qubit_length=qubit_lengths[randint(0, 2)],
+                           message_length=randint(16, 4096),
                            run_type="attack")
 
 

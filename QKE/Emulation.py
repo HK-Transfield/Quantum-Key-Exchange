@@ -114,7 +114,10 @@ class QKEEmulator:
     def run_symmetric_encryption(self) -> bool:
         """Performs a symmetric encryption using a key.
 
-        
+        Returns
+        ----------
+        bool
+            True if Alice and Bob (or Eve) have the same message
         """
         try:
             alice_message = self.qc.generate_message(self.message_length)
