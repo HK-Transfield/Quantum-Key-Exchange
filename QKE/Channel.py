@@ -12,9 +12,7 @@ methods for authenticating entites using the channel.
 """
 # ---------------------------------------------------------------------------
 
-import numpy as np
 from numpy.random import randint
-
 from .Qubit import Qubit
 from .XOR import cipher
 
@@ -29,14 +27,14 @@ class QuantumChannel:
         self.qubit_length = ql
 
     ##################################################################
-    # SETTERS and GENERAL UTILITIES
+    # GENERAL UTILITIES
     ##################################################################
 
-    def set_random(self) -> list:
+    def generate_random(self) -> list:
         """Returns a random list of 1s and 0s"""
         return randint(2, size=self.qubit_length).tolist()
 
-    def set_message(self, message_size: int) -> int:
+    def generate_message(self, message_size: int) -> int:
         """Returns a message as a random list of 1s and 0s"""
         return randint(2, size=message_size).tolist()
 

@@ -27,7 +27,7 @@ def cipher(message: list, key: list) -> list:
     Raises
     ----------
     ZeroDivisionError
-        If there is no key passed in, resulting in there
+        There is no key passed in, resulting in there
         being a modulo division with zero
     """
 
@@ -46,4 +46,4 @@ def cipher(message: list, key: list) -> list:
         return ciphered_message
 
     except ZeroDivisionError:
-        print("Error: The key does not exist")
+        print("Error: Cannot encrypt with an empty key!")
