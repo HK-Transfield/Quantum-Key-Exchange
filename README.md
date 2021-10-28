@@ -31,8 +31,6 @@ The key quantum mechanical observation is that these two types of polarization (
 are orthogonal to each other. This means that if a photon is polarized in a circular manner, it has
 an equal 50-50 chance to be measured as ↑ or ↓ when measured linearly (and vice-versa).
 
----
-
 ## QKE Algorithm
 
 1. The transmitter sends a stream of qubits and for each, it records the value and polarization
@@ -57,8 +55,6 @@ git clone https://github.com/HK-Transfield/Quantum-Key-Exchange
 cd Quantum-Key-Exchange
 python3 Main.py
 ```
-
----
 
 To run tests
 
