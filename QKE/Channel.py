@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ---------------------------------------------------------------------------
-__author__ = "Harmon Transfield"
+__author__ = "HK Transfield"
 # ---------------------------------------------------------------------------
 """
 QKE assumes the existence of a quantum communication channel over which qubits

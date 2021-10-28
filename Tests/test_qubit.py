@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ---------------------------------------------------------------------------
-__author__ = "Harmon Transfield"
+__author__ = "HK Transfield"
 # ---------------------------------------------------------------------------
 """
 Unit tests for the Qubit module. These tests focus on ensuring that

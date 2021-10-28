@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ---------------------------------------------------------------------------
-__author__ = "Harmon Transfield"
+__author__ = "HK Transfield"
 # ---------------------------------------------------------------------------
 """
 Main method, runs the entire application. Allows for different configurations

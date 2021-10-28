@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ---------------------------------------------------------------------------
-__author__ = "Harmon Transfield"
+__author__ = "HK Transfield"
 # ---------------------------------------------------------------------------
 """
 Implements an emulation of the QKE algorithm, followed by the secure exchange

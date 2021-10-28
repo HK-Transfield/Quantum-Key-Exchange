@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ---------------------------------------------------------------------------
-__author__ = "Harmon Transfield"
+__author__ = "HK Transfield"
 # ---------------------------------------------------------------------------
 """Unit tests for the XOR module. This tests all basic functions of XOR operations."""
 # ---------------------------------------------------------------------------
